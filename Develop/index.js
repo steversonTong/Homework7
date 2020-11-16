@@ -51,9 +51,36 @@ function writeToFile(fileName, data) {
     });
 }
 
+function formatREADME(info) {
+    const format=`
+    # ${info.title} 
+    ## This app is: 
+    ${info.explain} 
+
+    ## How to use this application: 
+    ${info.use}
+
+    ## This application is use for:
+    ${info.what}
+
+    ## Installation instructions:
+    ${info.install}
+
+    ## Contribution guidelines:
+    ${info.guidelines}
+
+    ## Test instructions:
+    ${info.test}
+    `;
+
+    writeToFile('DEV_README.md', readMeText)
+}
+
 // function to initialize program
 function init() {
-
+    inquirer.prompt(questions).then(function(response) {
+        formatREADME(response);
+    });
 }
 
 // function call to initialize program
